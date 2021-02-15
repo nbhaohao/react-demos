@@ -10,7 +10,11 @@ class FormStore {
       ...this.state,
       ...newState,
     };
-    this.fields.forEach(({ updateFn }) => updateFn());
+    this.fields.forEach(({ updateFn, name }) => {
+      if (name in newState) {
+        updateFn();
+      }
+    });
   }
   getFieldValue(name) {
     return this.state[name];
