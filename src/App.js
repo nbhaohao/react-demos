@@ -1,5 +1,8 @@
+import FormDemo from "./components/FormDemo";
+
 function App() {
-  return <div className="App">hello world</div>;
+  const isShowFormDemo = true;
+  return <div className="App">{isShowFormDemo && <FormDemo />}</div>;
 }
 
 export default App;
