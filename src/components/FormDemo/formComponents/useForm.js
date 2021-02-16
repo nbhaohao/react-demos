@@ -27,6 +27,7 @@ class FormStore {
   }
   unRegisterField(name) {
     this.fields = this.fields.filter((filed) => filed.name !== name);
+    delete this.state[name];
   }
 }
 
