@@ -1,4 +1,7 @@
-export function createStore(reducer) {
+export function createStore(reducer, enhancer) {
+  if (enhancer) {
+    return enhancer(createStore)(reducer);
+  }
   let state;
   let listeners = [];
   const getState = () => {

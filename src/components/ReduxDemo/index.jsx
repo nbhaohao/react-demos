@@ -27,6 +27,19 @@ const ReduxDemo = () => {
       >
         add
       </button>
+      <button
+        onClick={() => {
+          store.dispatch((dispatch) => {
+            setTimeout(() => {
+              dispatch({
+                type: "ADD",
+              });
+            }, 1000);
+          });
+        }}
+      >
+        async add
+      </button>
     </div>
   );
 };
