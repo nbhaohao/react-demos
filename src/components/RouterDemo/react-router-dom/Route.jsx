@@ -2,14 +2,16 @@ import React, { useContext } from "react";
 import { RouterContext } from "./Router";
 import matchPath from "./matchPath";
 
-const Route = ({ children, path, component, render, exact }) => {
+const Route = ({ children, path, component, render, exact, computedMatch }) => {
   const { location, history, match: defaultMatch } = useContext(RouterContext);
-  const match = path
-    ? matchPath(location.pathname, {
-        path,
-        exact,
-      })
-    : defaultMatch;
+  const match =
+    computedMatch ||
+    (path
+      ? matchPath(location.pathname, {
+          path,
+          exact,
+        })
+      : defaultMatch);
   const childProps = { location, history, match };
   console.log(match);
   if (match) {
