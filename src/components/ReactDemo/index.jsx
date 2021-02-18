@@ -23,10 +23,10 @@ const jsx = (
     <a className="test-class">hello world</a>
     <ClassComponent className="test-class" name="类组件" />
     <FunctionComponent className="test-class" name="函数式组件" />
-    <>渲染 fragment</>
-    {[1, 2, 3].map((value) => (
-      <div>处理数组的情况{value}</div>
-    ))}
+    {/*<>渲染 fragment</>*/}
+    {/*{[1, 2, 3].map((value) => (*/}
+    {/*  <div>处理数组的情况{value}</div>*/}
+    {/*))}*/}
   </div>
 );
 

@@ -1,1 +1,4 @@
 export const MY_REACT_TEXT_NODE = "_TEXT";
+export const MY_REACT_EFFECT_INIT = "INIT";
+export const MY_REACT_EFFECT_UPDATE = "UPDATE";
+export const MY_REACT_EFFECT_DELETION = "DELETION";
