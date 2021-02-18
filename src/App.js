@@ -5,7 +5,7 @@ import RouterDemo from "./components/RouterDemo";
 function App() {
   const isShowFormDemo = false;
   const isShowReduxDemo = false;
-  const isShowRouterDemo = true;
+  const isShowRouterDemo = false;
   return (
     <div className="App">
       {isShowFormDemo && <FormDemo />}
