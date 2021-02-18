@@ -2,13 +2,18 @@ import { MY_REACT_TEXT_NODE } from "./constants";
 
 // 创建 node
 function createNode(vNode) {
-  console.log(vNode);
   let node = null;
   const { type, props } = vNode;
   if (type === MY_REACT_TEXT_NODE) {
     node = document.createTextNode("");
   } else if (typeof type === "string") {
     node = document.createElement(type);
+  } else if (typeof type === "function") {
+    node = type.prototype.isReactComponent
+      ? updateClassComponent(vNode)
+      : updateFunctionComponent(vNode);
+  } else {
+    node = document.createDocumentFragment();
   }
   appendNodeChildren(props.children, node);
 
@@ -16,6 +21,18 @@ function createNode(vNode) {
   updateNode(node, props);
 
   return node;
+}
+
+function updateFunctionComponent(vNode) {
+  const { type, props } = vNode;
+  const renderedVNode = type(props);
+  return createNode(renderedVNode);
+}
+
+function updateClassComponent(vNode) {
+  const { type, props } = vNode;
+  const renderedVNode = new type(props).render();
+  return createNode(renderedVNode);
 }
 
 function updateNode(node, newProps) {
@@ -29,7 +46,11 @@ function updateNode(node, newProps) {
 // 把 children vNode -> node -> 插入到容器中
 function appendNodeChildren(children, node) {
   children.forEach((child) => {
-    render(child, node);
+    if (Array.isArray(child)) {
+      child.forEach((childItem) => render(childItem, node));
+    } else {
+      render(child, node);
+    }
   });
 }
 
